@@ -64,6 +64,8 @@ public class Admisiones extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jSeparator3 = new javax.swing.JPopupMenu.Separator();
         jMenuItem2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -162,9 +164,9 @@ public class Admisiones extends javax.swing.JFrame {
             }
         });
 
-        jMenu1.setText("Archivo");
+        jMenu1.setText("Opciones");
 
-        jMenuItem1.setText("Ver otros");
+        jMenuItem1.setText("Ver otros archivos");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
@@ -172,6 +174,15 @@ public class Admisiones extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem1);
         jMenu1.add(jSeparator1);
+
+        jMenuItem3.setText("Archivos disponibles");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem3);
+        jMenu1.add(jSeparator3);
 
         jMenuItem2.setText("Salir");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
@@ -191,7 +202,7 @@ public class Admisiones extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
@@ -212,13 +223,13 @@ public class Admisiones extends javax.swing.JFrame {
                                 .addComponent(txtedad, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
                                 .addComponent(txtcarrera, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnguardar, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnguardar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btneliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btneliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(btnabrir, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnlimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnlimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(34, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -252,13 +263,12 @@ public class Admisiones extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtarchivo)
                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 29, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnabrir, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnlimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnguardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btneliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnguardar, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+                    .addComponent(btneliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnabrir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnlimpiar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -535,6 +545,49 @@ public class Admisiones extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtsemestreKeyTyped
 
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+       try
+    {
+      //Se crea la variable con la direccion de la carpeta  
+      String directorio = "C:\\Users\\User\\Documents\\NetBeansProjects\\InformacionUniversidad";
+      //Se crea el objeto con el contenido de la carpeta
+      File carpeta = new File(directorio);
+      
+       if (carpeta.exists())
+         { 
+           File[] ficheros = carpeta.listFiles();
+           for (int x=0;x<ficheros.length;x++)
+            { 
+              //Para saber si son los archivos correctos (los .txt= 
+                String a = ficheros[x].getName();
+                int b = a.length();
+                char c = a.charAt(b-4);
+                char d = a.charAt(b-3);
+                char e = a.charAt(b-2);
+                char g = a.charAt(b-1);
+                String palabra = c+""+d+""+e+""+g;
+
+                if (palabra.equals(".txt"))
+                  {
+                   JOptionPane.showMessageDialog(null,ficheros[x].getName());
+                  }
+             }
+          }
+       else
+          {
+           //En caso tal de que la carpeta no existe o fue movida   
+           JOptionPane.showMessageDialog(this,"No existe la carpeta o no hay archivos disponibles, "+
+                "por favor cambie la dirección ","Archivos",JOptionPane.INFORMATION_MESSAGE);
+           }
+     }
+    catch (StringIndexOutOfBoundsException ex)
+     {
+       //En caso tal que de cancel en el joptioninput, no genere error
+     }
+
+                                     
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -586,7 +639,9 @@ public class Admisiones extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JTextField txtapellidos;
     private javax.swing.JTextField txtarchivo;
     private javax.swing.JTextField txtcarrera;
